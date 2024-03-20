@@ -3,9 +3,15 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
     keys = {
 	{
-	    "<C-p>",
+	    "<Leader>ff",
 	    function()
 		require("telescope.builtin").find_files()
+	    end
+	},
+	{
+	    "<Leader>fg",
+	    function()
+		require("telescope.builtin").live_grep()
 	    end
 	}
     }
