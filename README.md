@@ -1,7 +1,7 @@
 # Setup new machine
 ### Install packages
 ```
-pacman -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi
+pacman -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst
 ```
 ### Copy configs
 ```
