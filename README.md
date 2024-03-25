@@ -1,7 +1,7 @@
 # Installation
 ### Install dependencies
 ```
-pacman -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst
+yay -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst wlogout
 ```
 ### Copy configs
 ```
