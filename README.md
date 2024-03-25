@@ -1,5 +1,5 @@
-# Setup new machine
-### Install packages
+# Installation
+### Install dependencies
 ```
 pacman -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst
 ```
