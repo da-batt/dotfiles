@@ -1,7 +1,7 @@
 # Installation
 ### Install dependencies
 ```
-yay -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst wlogout
+yay -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst wlogout brightnessctl
 ```
 ### Copy configs
 ```
