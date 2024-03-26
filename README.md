@@ -5,6 +5,8 @@ yay -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst wlogo
 ```
 ### Copy configs
 ```
-git clone --separate-git-dir=$HOME/.dotfiles https://github.com/da-batt/dotfiles.git $HOME/dotfiles-tmp
-rm -r ~/dotfiles-tmp/
+git clone https://github.com/da-batt/dotfiles.git $HOME/.dotfiles
+alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
+dotfiles checkout -f
+dotfiles config --local status.showUntrackedFiles no
 ```
