@@ -2,8 +2,8 @@
 
 alias homelab-on="wol dc:4a:3e:78:a8:6d"
 alias vim="nvim"
-alias vi="nvim"
-alias nv="nvim"
+alias v="nvim"
+alias t="tmux"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # If not running interactively, don't do anything
