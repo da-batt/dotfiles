@@ -11,6 +11,9 @@ alias grep='grep --color=auto'
 # Customize PS1
 PS1='\e[32m\u@\h \e[34m\w\e[0m $ '
 
+# Set default editor
+export EDITOR=nvim
+
 # Autocompletion for dotfiles alias
 source /usr/share/bash-completion/completions/git
 __git_complete dotfiles __git_main
