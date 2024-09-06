@@ -1,5 +1,6 @@
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename)
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action)
 
 return {
     {
@@ -8,29 +9,66 @@ return {
             "williamboman/mason.nvim",
             {
                 "neovim/nvim-lspconfig",
-                dependencies = {
-                    {
-                        "folke/neodev.nvim",
-                        config = true,
-                    },
-                },
             },
         },
         config = function()
             require("mason").setup()
-            require("mason-lspconfig").setup({ ensure_installed = { "lua_ls" } })
-            require("mason-lspconfig").setup_handlers({
-
+            local mason_lspconfig = require("mason-lspconfig")
+            mason_lspconfig.setup({ ensure_installed = { "lua_ls", "rust_analyzer" } })
+            local lspconfig = require("lspconfig")
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            capabilities.textDocument.completion.completionItem.snippetSupport = true
+            mason_lspconfig.setup_handlers({
                 function(server_name)
-                    require("lspconfig")[server_name].setup({})
+                    lspconfig[server_name].setup({})
                 end,
 
+                ["rust_analyzer"] = function()
+                    lspconfig.rust_analyzer.setup({})
+                end,
+                ["cssls"] = function()
+                    lspconfig.cssls.setup({
+                        capabilities = capabilities,
+                    })
+                end,
                 ["lua_ls"] = function()
                     require("lspconfig").lua_ls.setup({
+                        -- Configuration for neovim configs
+                        on_init = function(client)
+                            local path = client.workspace_folders[1].name
+                            if
+                                vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc")
+                            then
+                                return
+                            end
+
+                            client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+                                runtime = {
+                                    version = "LuaJIT",
+                                },
+                                -- Make the server aware of Neovim runtime files
+                                workspace = {
+                                    checkThirdParty = false,
+                                    library = {
+                                        vim.env.VIMRUNTIME,
+                                        -- Depending on the usage, you might want to add additional paths here.
+                                        -- "${3rd}/luv/library"
+                                        -- "${3rd}/busted/library",
+                                    },
+                                },
+                            })
+                        end,
                         settings = {
                             Lua = {
                                 completion = {
                                     callSnippet = "Replace",
+                                },
+                                format = {
+                                    enable = true,
+                                    defaultConfig = {
+                                        indent_style = "space",
+                                        indent_size = "2",
+                                    },
                                 },
                             },
                         },
