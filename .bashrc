@@ -9,7 +9,7 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 
 # Customize PS1
-PS1='\e[32m\u@\h \e[34m\w\e[0m $ '
+PS1='\[\e[32m\]\u@\h \[\e[34m\]\w\[\e[0m\] $ '
 
 # Set default editor
 export EDITOR=nvim
