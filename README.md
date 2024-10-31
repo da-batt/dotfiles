@@ -1,9 +1,4 @@
-# Installation
-### Install dependencies
-```
-yay -S neovim kitty hyprland xdg-desktop-portal-hyprland waybar wofi dunst wlogout brightnessctl
-```
-### Copy configs
+# Clone dotfiles
 ```
 git clone https://github.com/da-batt/dotfiles.git $HOME/.dotfiles
 alias dotfiles='/usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME"'
